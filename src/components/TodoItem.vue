@@ -1,18 +1,25 @@
 <template>
     <div class="todo-item">
-        {{ props.todoTitle }}
+        {{ props.todoItem.title }} {{ props.todoItem.id }}
     </div>
+    <button @click="handleDelete(props.todoItem.id)"> deleteItem</button>
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
+import { defineEmits, defineProps } from 'vue'
+
+const emit = defineEmits(['delete-todo-item'])
 
 const props = defineProps({
-    todoTitle: {
-        type: String,
+    todoItem: {
+        type: Object,
         required: true,
     }
 })
+
+function handleDelete(id) {
+    emit('delete-todo-item', id)
+}
 </script>
 
 <style scoped>

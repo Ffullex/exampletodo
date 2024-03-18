@@ -13,6 +13,8 @@ const emit = defineEmits(['create-new-item'])
 const todoTitle = ref('')
 
 function handleAddItem() {
+    if ( !todoTitle.value) return
+
     emit('create-new-item', todoTitle.value)
     todoTitle.value=''
 }
